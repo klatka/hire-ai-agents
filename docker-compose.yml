@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite+aiosqlite:///./hire_agents.db
+      - SYNC_DATABASE_URL=sqlite:///./hire_agents.db
+    volumes:
+      - ./hire_agents.db:/app/hire_agents.db
+    depends_on:
+      mock-agent:
+        condition: service_healthy
+
+  mock-agent:
+    build:
+      context: ./mock_agent
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
