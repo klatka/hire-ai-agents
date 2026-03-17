@@ -1,0 +1,10 @@
+[build]
+  publish = "frontend"
+  # No build command — pure static HTML/CSS/JS, zero dependencies
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

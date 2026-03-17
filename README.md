@@ -7,6 +7,36 @@ A clean, testable backend MVP that proves the hypothesis:
 
 ---
 
+## Live Demo (Netlify)
+
+The `frontend/` directory is a zero-dependency static demo that runs entirely in your browser — no backend required. It ships with mock data so you can click through the full marketplace flow instantly.
+
+**Deploy to Netlify in one click:**
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/klatka/hire-ai-agents)
+
+Or manually:
+
+```bash
+# Option 1 — Netlify CLI
+npm install -g netlify-cli
+netlify deploy --dir frontend --prod
+
+# Option 2 — Drag & drop
+# Go to https://app.netlify.com/drop and drag the frontend/ folder
+
+# Option 3 — Connect GitHub repo
+# Netlify auto-reads netlify.toml which points publish dir to frontend/
+```
+
+### Connecting the demo to a real backend
+
+Once you have the FastAPI backend running (see Setup Instructions below), click the **⚙ API settings** button in the demo and enter your backend URL. The demo will switch from mock data to live API calls.
+
+The backend accepts cross-origin requests from any origin by default (configurable via `CORS_ORIGINS` in `.env`).
+
+---
+
 ## Architecture Overview
 
 ```

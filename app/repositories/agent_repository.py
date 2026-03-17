@@ -37,6 +37,6 @@ class AgentRepository:
         await self.db.commit()
 
     async def list_active_with_capability(self, capability: str) -> List[Agent]:
-        result = await self.db.execute(select(Agent).where(Agent.is_active == True))
+        result = await self.db.execute(select(Agent).where(Agent.is_active))
         agents = result.scalars().all()
         return [a for a in agents if capability in (a.capabilities or [])]
